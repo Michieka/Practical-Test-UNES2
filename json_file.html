@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard</title>
+<style>
+  body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 20px;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+.card h2 {
+  font-size: 1.5em;
+  margin-top: 0;
+}
+
+.card p {
+  color: #555;
+}
+
+.card span {
+  color: #999;
+  font-size: 0.8em;
+}
+
+</style>
+</head>
+<body>
+<div id="dashboard"></div>
+<script>
+  fetch('C:\xampp\htdocs\Exam Q2.json')
+    .then(response => response.json())
+    .then(data => {
+      // Create a dashboard element
+      const dashboardElement = document.getElementById('dashboard');
+      
+      // Loop through the JSON data and create a card for each item
+      data.forEach(item => {
+        const card = document.createElement('div');
+        card.classList.add('card');
+        card.innerHTML = `
+          <h2>${item.title}</h2>
+          <p>${item.description}</p>
+          <span>${item.date}</span>
+        `;
+        dashboardElement.appendChild(card);
+      });
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+</script>
+</body>
+</html>
